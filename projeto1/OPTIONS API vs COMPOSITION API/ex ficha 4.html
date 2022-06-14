@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Default VueJS</title>
+</head>
+
+
+<body>
+  <script src="https://unpkg.com/vue@3"></script>
+
+  <div id="app">
+    <h2> {{message}} <button @click="reverseText">Inverter Texto</button></h2>
+    <h2><button @click="countMinusOneButton">-1</button> {{count}} <button @click="countPlusOneButton">+1</button></h2>
+    <h2><input type="text" v-model="temperatureF"> <button @click="toCelsius">Para Celsius</button> <input
+        type="text" v-model="temperatureCelsius"></h2>
+    <h2><input type="text" v-model="temperatureC"> <button @click="toFahrenheit">Para Fahrenheit</button> <input type="text"
+        v-model="temperatureFahrenheit"></h2>
+
+  </div>
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          message: 'Hello World',
+          count: 0,
+          temperatureCelsius: 0,
+          temperatureFahrenheit: 0,
+          temperatureC: 0,
+          temperatureF: 0,
+        }
+      },
+
+      methods: {
+        reverseText: function (message) {
+          this.message = this.message.split('').reverse().join('')
+        },
+        countPlusOneButton: function (count) {
+          this.count++
+        },
+        countMinusOneButton: function (count) {
+          this.count--
+        },
+        toFahrenheit: function (temperature) {
+          this.temperatureFahrenheit = this.temperatureC * (9 / 5) + 32
+        },
+        toCelsius: function (temperature) {
+          this.temperatureCelsius = (this.temperatureF - 32) * (5 / 9)
+        }
+      }
+    }).mount('#app')
+  </script>
+
+
+
+</body>
+
+</html>
